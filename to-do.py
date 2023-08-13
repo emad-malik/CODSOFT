@@ -1,11 +1,18 @@
 import tkinter as tk
 from tkinter import messagebox 
+from PIL import Image, ImageTk
 # window initialization with title, name, size and configuration
 window = tk.Tk()
 window.title("Emad's To-Do List")
 window.geometry("300x300")
 window.config(bg= "#66CDAA")
-user_taskList= ['Pray Fajr','Breakfast','Take classes','Have lunch','Pray Zuhr','Take a nap','Study I','Do Assignments','Pray Asr','Recite Quran','Pray Maghrib','Go for jogging','Pray Isha','Have Dinner','Study II'] 
+user_taskList= [] 
+# Load the background image
+bg_image = Image.open("bg.jpg")
+bg_photo = ImageTk.PhotoImage(bg_image)
+# Create a label to display the background image
+bg_label = tk.Label(window, image=bg_photo)
+bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 # this function updates task list as user interacts with the app
 def updateTaskList():
     clearTaskList()
@@ -37,10 +44,10 @@ def listFrequency():
     displayPrompt= "Number of tasks: %s" %number_ofTasks
     screenDisplay["text"]= displayPrompt
 # set app title through Label()
-screenLabel= tk.Label(window, text= "To-Do List", fg= "white", bg= "#66CDAA", font= ("Helvetica", 20))
+screenLabel= tk.Label(window, text= "To-Do List", fg= "black", bg= "#cffdeb", font= ("Helvetica", 20))
 screenLabel.pack()
 # set prompt display through Label()
-screenDisplay= tk.Label(window, text= "", fg= "white", bg= "#66CDAA", font= "Helvetica")
+screenDisplay= tk.Label(window, text= None, font= "Helvetica")
 screenDisplay.pack()
 # set user input placeholder
 user_textInput= tk.Entry(window, width= 30)
